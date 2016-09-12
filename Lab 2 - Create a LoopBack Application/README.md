@@ -292,7 +292,7 @@ To confirm that the API has been correctly mapped and can interface with the dat
 
 	> ![][troubleshooting]
 	> 
-	> The first time you invoke the API, you may receive an error. The error occurs becuase the browser does not trust the self-signed certificate from the MicroGateway. To resolve the error, click on the link in the response window and accept the certificate warning.
+	> The first time you invoke the API, you may receive an error. The error occurs because the browser does not trust the self-signed certificate from the MicroGateway. To resolve the error, click on the link in the response window and accept the certificate warning.
 
 	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/5010/lab-guide/img/lab2/cert-error.png)
 
