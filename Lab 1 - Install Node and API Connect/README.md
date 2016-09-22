@@ -15,7 +15,7 @@ In the following lab, you will learn:
 
 ---
 # Lab 1 - Case Study used in this tutorial
-In this tutorial, you will be starting from scratch to set up your development environment on your local machine, and then you will test the components of the toolkit by creating the default Hello World LoopBack application. We will look at the created artifacts to get a better understanding of what is created for you. The hello-world application is a simple RESTful service that holds a set of "notes" in memory. In this lab we may be creating a new RESTful service and API, but in future labs you'll be creating APIs with existing services.
+In this tutorial, you will be starting from scratch to set up your development environment on your local machine, and then you will test the components of the toolkit by creating the default Notes LoopBack application. We will look at the created artifacts to get a better understanding of what is created for you. The notes application is a simple RESTful service that holds a set of "notes" in memory. In this lab we may be creating a new RESTful service and API, but in future labs you'll be creating APIs with existing services.
 
 ---
 # Lab 1	- Before you begin
@@ -267,7 +267,7 @@ For this lab, you will be starting with your local image and installing node.js 
 
 	![](http://github.com/ibm-apiconnect/pot-bluemix-docs/raw/master/img/lab1/34.png)
 
-# 1.2	- Creating a `hello-world` Application
+# 1.2	- Creating a `notes` Application
 
 1.	We will use the API Connect Developer Toolkit command line interface to create the initial application and explore the created artifacts.
 
@@ -277,34 +277,23 @@ For this lab, you will be starting with your local image and installing node.js 
 	apic loopback
 	```
 	
-	This command starts the application generator, Yeoman, to help scaffold the new project. Just press enter for each of the three questions.
+	This command starts the application generator, Yeoman, to help scaffold the new project. Just press enter for first two questions and then select **notes** for the kind of application.
 	
 	```
-	     _-----_
-	    |       |    .--------------------------.
-	    |--(o)--|    |  Let's create a LoopBack |
-	   `---------´   |       application!       |
-	    ( _´U`_ )    '--------------------------'
-	    /___A___\
-	     |  ~  |
-	   __'.___.'__
-	 ´   `  |° ´ Y `
+	? What's the name of your application? notes
+	? Enter name of the directory to contain the project: notes
+	? What kind of application do you have in mind? 
+	empty-server (An empty LoopBack API, without any configured models or datasources) 
+	hello-world (A project containing a controller, including a single vanilla Message and a single remote method) 
+	❯ notes (A project containing a basic working example, including a memory database)
+```
 	
-	? What's the name of your application? hello-world
-	? Enter name of the directory to contain the project: hello-world
-	   create hello-world/
-	     info change the working directory to hello-world
-	
-	? What kind of application do you have in mind? hello-world (A project containing a basic working e
-	xample, including a memory database)
-	```
-	
-	This creates an application named "hello-world" in a directory of the same name. The application is a basic Hello World application. You will see a lot of messages printed to the command line window. It is creating a few resources for you and installing the various node modules. Once the node modules are loaded you'll notice that the process creates swagger and product definitions for you. Finally, the process displays some hints about what to do next. Since we've been given such lovely suggestions about what to do next, we may as well follow the first one at least.
+	This creates an application named "notes" in a directory of the same name. The application is a basic Notes application. You will see a lot of messages printed to the command line window. It is creating a few resources for you and installing the various node modules. Once the node modules are loaded you'll notice that the process creates swagger and product definitions for you. Finally, the process displays some hints about what to do next. Since we've been given such lovely suggestions about what to do next, we may as well follow the first one at least.
 
 1. Change directories to the project directory:
 	
 	```bash
-	cd hello-world
+	cd notes
 	```
 
 1. List the directory:
@@ -324,8 +313,8 @@ For this lab, you will be starting with your local image and installing node.js 
 |common/models/note.js|Custom script for the note data model. This file contains the implementation of the methods defined by the model definition file.|
 |common/models/note.json|The note model definition file. This file contains the definition of the properties and methods for this model.|
 |definitions|This directory contains the definitions for the APIs and the product contained in this application.|
-|definitions/hello-world-product.yaml|YAML file for the the hello-world product. Which includes default plans for testing locally.|
-|definitions/hello-world.yaml|Swagger definition file for the hello-world API. Includes information about the REST paths and operations, schemas for data models, security requirements, etc.|
+|definitions/notes-product.yaml|YAML file for the the notes product. Which includes default plans for testing locally.|
+|definitions/notes.yaml|Swagger definition file for the notes API. Includes information about the REST paths and operations, schemas for data models, security requirements, etc.|
 |node_modules|Directory containing all the required node modules for the default application.|
 |package.json|Standard Node.js package specification. Most importantly it contains the application package dependencies.|
 |server|This directory contains the Node.js application and configuration files. We'll not look at them all in this tutorial, but here are a few.|
@@ -338,7 +327,7 @@ For this lab, you will be starting with your local image and installing node.js 
 >
 > `*.md` files, such as that found in the client directory, are markdown files used for internal documentation.
 
-# 1.3	- Launching the `hello-world` Application
+# 1.3	- Launching the `notes` Application
 
 1. Now that we've explored what is created by the application generator, let's move on to the API Designer. From the command line:
 
@@ -346,7 +335,14 @@ For this lab, you will be starting with your local image and installing node.js 
 	apic edit
 	```
 	
-1. Next, click on the `start` button located on the bottom panel of the API Designer to launch the `hello-world` application.  On a Windows environment, you might see 2 node windows pop up on your screen.  Minimize, but do not close these windows.
+	> **Note:** You may be asked to login to your Bluemix account. You can overt this step prepending the previous command with SKIP_LOGIN=true. Example:
+
+	```
+	bash
+	SKIP_LOGIN=true apic edit
+	```
+
+1. Next, click on the `start` button located on the bottom panel of the API Designer to launch the `notes` application.  On a Windows environment, you might see 2 node windows pop up on your screen.  Minimize, but do not close these windows.
 	
 	![](https://github.com/ibm-apiconnect/pot-bluemix-docs/raw/master/img/lab1/6.png)
 	
@@ -362,7 +358,7 @@ For this lab, you will be starting with your local image and installing node.js 
 	> 
 	> We used the web-based editor to launch the application. There's also a command provided with the API Connect Developer Toolkit that can be utilized from the terminal to lauch the application: `apic start`
 
-# 1.4	- Testing the `hello-world` Application
+# 1.4	- Testing the `notes` Application
 
 1. Click the `Explore` button to switch to the API Explorer view.
 
@@ -370,7 +366,7 @@ For this lab, you will be starting with your local image and installing node.js 
 	
 	You will see all the exposed service paths displayed.
 	
-	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/exploreScreen.png)
+	![](https://github.com/kenatibm/pot-bluemix-docs/blob/master/img/lab1/exploreScreen.png)
 
 1. Now we're going to test the services using the GUI presented on the explore screen. You'll notice that on the left several REST services are defined for us. In particular, take a look `POST /notes` and `GET /notes`.
 
@@ -384,7 +380,7 @@ For this lab, you will be starting with your local image and installing node.js 
 	
 	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/generate-data.png)
 	
-	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/generate.png)
+	![](https://github.com/kenatibm/pot-bluemix-docs/blob/master/img/lab1/generate.png)
 	
 	Your data will look different, but you're ready to test the service.
 	
@@ -392,7 +388,7 @@ For this lab, you will be starting with your local image and installing node.js 
 	
 	In the results, you should see a `Code: 200 OK` which indicates that a new `note` was created. If you received a different response, see the troubleshooting steps below.
 	
-	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/POST-results.png)
+	![](https://github.com/kenatibm/pot-bluemix-docs/blob/master/img/lab1/POST-results.png)
 	
 	> ![][troubleshooting]
 	>
@@ -404,7 +400,7 @@ For this lab, you will be starting with your local image and installing node.js 
   >
   > If you see a 500 error like the one below, make sure you press the `Generate` button before you press the `Call operation` button again. Otherwise, you're trying to create a duplicate note.
 
-![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/duplicateRecordError.png)
+	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/duplicateRecordError.png)
 
 
 1. Once you have created one note, go ahead and create another one or two.
@@ -419,13 +415,13 @@ For this lab, you will be starting with your local image and installing node.js 
 
 1. Scroll down to the `Call operation` button and press it. Then scroll down to the results.
 	
-	![](https://github.com/ibm-apiconnect/pot-onprem-docs/raw/master/lab-guide/img/lab1/GET-results.png)
+	![](https://github.com/kenatibm/pot-bluemix-docs/blob/master/img/lab1/GET-results.png)
 		
 	You should see all the notes that you generated in the result set.
 		
 	> ![][important]
 	> 
-	> If you see an empty array, `[]`, as your result, then you've not successfully created any notes. This is also true if you stop the application and restart it. With the hello-world example, we're using an in-memory database which means that nothing is persisted to disk. So, it is lost when the server is stopped and restarted. Lab 2 will walk through how to connect to your application to a persistent data source.
+	> If you see an empty array, `[]`, as your result, then you've not successfully created any notes. This is also true if you stop the application and restart it. With the notes example, we're using an in-memory database which means that nothing is persisted to disk. So, it is lost when the server is stopped and restarted. Lab 2 will walk through how to connect to your application to a persistent data source.
 
 1. At this point, we are done testing the app locally. Click on the `Run` button again to return to the application launch screen.
 
@@ -531,12 +527,12 @@ For this lab, you will be starting with your local image and installing node.js 
 
 10. A validation email will be sent out to the email address used at sign up.  Click on the validation link and then you will have completed the sign up process and will be authenticated into the page.
 
-10. Once you are authenticated in, you can then Browse the `API Products` and see your `hello-world` product that is now published to your environment.
+10. Once you are authenticated in, you can then Browse the `API Products` and see your `notes` product that is now published to your environment.
 	![](https://github.com/ibm-apiconnect/pot-bluemix-docs/raw/master/img/lab1/26.png)
 
 11. At this point we will stop, as we will be building additional apis and services that will be published to the portal.
 
-	It should be noted that the hello-world application has more to it than we've shown in this lab. You're encouraged to dig in and discover the custom method that's implemented. In future labs, we'll be doing more work in the Developer Portal. For instance we'll be customizing the portal theme, registering an application, subscribing to APIs and testing them from a separate consumer application.
+	It should be noted that the notes application has more to it than we've shown in this lab. You're encouraged to dig in and discover the custom method that's implemented. In future labs, we'll be doing more work in the Developer Portal. For instance we'll be customizing the portal theme, registering an application, subscribing to APIs and testing them from a separate consumer application.
 
 
 1. Close the `Firefox` web browser. If a warning is presented about closing multiple tabs, deselect the option to notify you in the future and click the `Close Tabs` button.

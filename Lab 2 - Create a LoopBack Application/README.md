@@ -446,7 +446,7 @@ In the earlier steps, you used the API Designer User Experience to create a data
 	? Property type:
 		> date
 	?Required? Y
-	?Default value [leave blank for none]: <leave blank>
+	?Default value [leave blank for none]: <leave blank>"
 	```
 
 1. Next add the `reviewer_name` property:
